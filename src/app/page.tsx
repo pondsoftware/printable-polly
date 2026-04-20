@@ -33,6 +33,21 @@ const categories = [
       { href: "/grocery-list", icon: "🛒", title: "Grocery List", desc: "Shopping list organized by store section" },
       { href: "/budget-tracker", icon: "💰", title: "Budget Tracker", desc: "Track monthly income and expenses" },
       { href: "/chore-chart", icon: "⭐", title: "Chore Chart", desc: "Weekly chore chart with customizable tasks" },
+      { href: "/cleaning-schedule", icon: "🧹", title: "Cleaning Schedule", desc: "Weekly cleaning checklist by room" },
+    ],
+  },
+  {
+    name: "Games & Activities",
+    templates: [
+      { href: "/word-search", icon: "🔍", title: "Word Search", desc: "Generate custom word search puzzles" },
+      { href: "/bingo-cards", icon: "🎱", title: "Bingo Cards", desc: "Generate randomized bingo cards" },
+    ],
+  },
+  {
+    name: "Creative",
+    templates: [
+      { href: "/comic-strip", icon: "💬", title: "Comic Strip", desc: "Blank comic panels for drawing stories" },
+      { href: "/storyboard", icon: "🎬", title: "Storyboard", desc: "Scene planning with drawing and notes areas" },
     ],
   },
   {
