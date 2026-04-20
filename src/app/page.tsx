@@ -48,6 +48,7 @@ const categories = [
     templates: [
       { href: "/comic-strip", icon: "💬", title: "Comic Strip", desc: "Blank comic panels for drawing stories" },
       { href: "/storyboard", icon: "🎬", title: "Storyboard", desc: "Scene planning with drawing and notes areas" },
+      { href: "/coloring-pages", icon: "🎨", title: "Coloring Pages", desc: "Geometric mandalas and patterns to color" },
     ],
   },
   {
