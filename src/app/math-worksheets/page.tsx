@@ -604,26 +604,28 @@ export default function MathWorksheets() {
               </div>
             )}
 
-            {showAnswers && (
-              <div className="mt-8 pt-4 border-t-2 border-dashed border-gray-300">
-                <h3 className="font-bold text-sm text-gray-700 mb-2">Answer Key</h3>
-                <div style={{
-                  display: "grid",
-                  gridTemplateColumns: isTextLayout(operation)
-                    ? `repeat(${Math.min(3, problems.length)}, 1fr)`
-                    : `repeat(${Math.min(columns + 2, 5)}, 1fr)`,
-                  gap: "4px 16px",
-                  fontSize: "12px",
-                }}>
-                  {problems.map((p, i) => (
-                    <span key={i} className="text-gray-600 font-mono">
-                      {i + 1}. {p.answer}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            )}
           </div>
+
+          {showAnswers && (
+            <div className="printable-area bg-white border border-gray-200 shadow-sm mt-6" style={{ width: `${width}px`, minHeight: "200px", padding: "32px", breakBefore: "page" }}>
+              <h2 className="text-xl font-bold text-center mb-1">Answer Key</h2>
+              <p className="text-center text-sm text-gray-500 mb-4">{opLabel} &bull; {diffLabel}</p>
+              <div style={{
+                display: "grid",
+                gridTemplateColumns: isTextLayout(operation)
+                  ? `repeat(${Math.min(3, problems.length)}, 1fr)`
+                  : `repeat(${Math.min(columns + 2, 5)}, 1fr)`,
+                gap: "8px 16px",
+                fontSize: "14px",
+              }}>
+                {problems.map((p, i) => (
+                  <span key={i} className="text-gray-600 font-mono">
+                    {i + 1}. {p.answer}
+                  </span>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
       </div>
 

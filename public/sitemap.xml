@@ -151,6 +151,21 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://printablepolly.com/fractions-worksheets</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://printablepolly.com/algebra-worksheets</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://printablepolly.com/geometry-worksheets</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://printablepolly.com/sight-words</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>

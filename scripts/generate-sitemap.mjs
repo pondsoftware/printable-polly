@@ -33,6 +33,9 @@ const urls = [
   "/number-line",
   "/reading-log",
   "/math-worksheets",
+  "/fractions-worksheets",
+  "/algebra-worksheets",
+  "/geometry-worksheets",
   "/sight-words",
 ];
 
