@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import PrintControls, { Orientation, getDimensions } from "@/components/PrintControls";
 
 const faqs = [
   { question: "Should my weekly planner start on Monday or Sunday?", answer: "It depends on your preference. Monday-start is common in work/school contexts, while Sunday-start matches most printed calendars. Choose what fits your routine." },
@@ -12,6 +13,8 @@ export default function WeeklyPlanner() {
   const [startDay, setStartDay] = useState<"monday" | "sunday">("monday");
   const [showTimeSlots, setShowTimeSlots] = useState(false);
   const [showNotes, setShowNotes] = useState(true);
+  const [orientation, setOrientation] = useState<Orientation>("portrait");
+  const { width, height } = getDimensions(orientation);
 
   const days = startDay === "monday"
     ? ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
@@ -33,7 +36,7 @@ export default function WeeklyPlanner() {
   };
 
   return (
-    <div className="max-w-6xl mx-auto px-4 py-8 sm:px-6 lg:px-8">
+    <div className={`max-w-6xl mx-auto px-4 py-8 sm:px-6 lg:px-8 ${orientation === "landscape" ? "print-landscape" : "print-portrait"}`}>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
 
@@ -61,13 +64,11 @@ export default function WeeklyPlanner() {
               Notes Section
             </label>
           </div>
-          <button onClick={() => window.print()} className="w-full bg-emerald-600 text-white font-medium py-2 px-4 rounded hover:bg-emerald-700 transition-colors">
-            🖨️ Print
-          </button>
+          <PrintControls orientation={orientation} onOrientationChange={setOrientation} filename="weekly-planner" />
         </div>
 
         <div className="flex-1 overflow-auto">
-          <div className="printable-area bg-white border border-gray-200 shadow-sm" style={{ width: "816px", minHeight: "1056px", padding: "24px" }}>
+          <div className="printable-area bg-white border border-gray-200 shadow-sm" style={{ width: `${width}px`, minHeight: `${height}px`, padding: "24px" }}>
             <h2 className="text-xl font-bold text-center mb-1">Weekly Planner</h2>
             <p className="text-center text-sm text-gray-500 mb-4">Week of: _______________</p>
 

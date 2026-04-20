@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
+import PrintControls, { Orientation, getDimensions } from "@/components/PrintControls";
 
 const faqs = [
   { question: "What is the difference between college ruled and wide ruled paper?", answer: "College ruled paper has lines spaced 9/32\" (7.1mm) apart, while wide ruled paper has lines spaced 11/32\" (8.7mm) apart. Narrow ruled is even tighter at 1/4\" (6.35mm)." },
@@ -12,7 +13,9 @@ export default function LinedPaper() {
   const [spacing, setSpacing] = useState<string>("college");
   const [showMargin, setShowMargin] = useState(true);
   const [lineColor, setLineColor] = useState("#a0d0ff");
+  const [orientation, setOrientation] = useState<Orientation>("portrait");
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const { width, height } = getDimensions(orientation);
 
   const spacingPixels: Record<string, number> = {
     college: 29,
@@ -27,8 +30,6 @@ export default function LinedPaper() {
     if (!ctx) return;
 
     const dpr = 2;
-    const width = 816;
-    const height = 1056;
     canvas.width = width * dpr;
     canvas.height = height * dpr;
     canvas.style.width = `${width}px`;
@@ -58,7 +59,7 @@ export default function LinedPaper() {
       ctx.lineTo(96, height);
       ctx.stroke();
     }
-  }, [spacing, showMargin, lineColor]);
+  }, [spacing, showMargin, lineColor, orientation, width, height]);
 
   const faqSchema = {
     "@context": "https://schema.org",
@@ -76,7 +77,7 @@ export default function LinedPaper() {
   };
 
   return (
-    <div className="max-w-6xl mx-auto px-4 py-8 sm:px-6 lg:px-8">
+    <div className={`max-w-6xl mx-auto px-4 py-8 sm:px-6 lg:px-8 ${orientation === "landscape" ? "print-landscape" : "print-portrait"}`}>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
 
@@ -103,9 +104,7 @@ export default function LinedPaper() {
             <label className="block text-sm font-medium text-gray-700 mb-1">Line Color</label>
             <input type="color" value={lineColor} onChange={(e) => setLineColor(e.target.value)} className="w-full h-10 border border-gray-300 rounded cursor-pointer" />
           </div>
-          <button onClick={() => window.print()} className="w-full bg-emerald-600 text-white font-medium py-2 px-4 rounded hover:bg-emerald-700 transition-colors">
-            🖨️ Print
-          </button>
+          <PrintControls orientation={orientation} onOrientationChange={setOrientation} filename="lined-paper" />
         </div>
 
         <div className="flex-1 overflow-auto">

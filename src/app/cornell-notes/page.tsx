@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import PrintControls, { Orientation, getDimensions } from "@/components/PrintControls";
 
 const faqs = [
   { question: "What is the Cornell note-taking method?", answer: "The Cornell method divides the page into three sections: a narrow left column for cues/questions, a wide right column for notes, and a bottom section for summarizing. This structure helps with review and retention." },
@@ -11,6 +12,8 @@ const faqs = [
 export default function CornellNotes() {
   const [title, setTitle] = useState("Cornell Notes");
   const [showLines, setShowLines] = useState(true);
+  const [orientation, setOrientation] = useState<Orientation>("portrait");
+  const { width, height } = getDimensions(orientation);
 
   const faqSchema = {
     "@context": "https://schema.org",
@@ -28,7 +31,7 @@ export default function CornellNotes() {
   };
 
   return (
-    <div className="max-w-6xl mx-auto px-4 py-8 sm:px-6 lg:px-8">
+    <div className={`max-w-6xl mx-auto px-4 py-8 sm:px-6 lg:px-8 ${orientation === "landscape" ? "print-landscape" : "print-portrait"}`}>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
 
@@ -47,13 +50,11 @@ export default function CornellNotes() {
               Show Guide Lines
             </label>
           </div>
-          <button onClick={() => window.print()} className="w-full bg-emerald-600 text-white font-medium py-2 px-4 rounded hover:bg-emerald-700 transition-colors">
-            🖨️ Print
-          </button>
+          <PrintControls orientation={orientation} onOrientationChange={setOrientation} filename="cornell-notes" />
         </div>
 
         <div className="flex-1 overflow-auto">
-          <div className="printable-area bg-white border border-gray-200 shadow-sm" style={{ width: "816px", minHeight: "1056px", padding: "32px" }}>
+          <div className="printable-area bg-white border border-gray-200 shadow-sm" style={{ width: `${width}px`, minHeight: `${height}px`, padding: "32px" }}>
             {/* Title area */}
             <div className="text-center border-b-2 border-gray-800 pb-2 mb-4">
               <h2 className="text-xl font-bold">{title}</h2>

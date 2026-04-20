@@ -12,6 +12,10 @@ body {
 }
 
 @media print {
+  @page {
+    margin: 0;
+  }
+
   header,
   footer,
   .no-print,
@@ -30,6 +34,12 @@ body {
     margin: 0 !important;
   }
 
+  .faq-section,
+  .intro-text,
+  h1 {
+    display: none !important;
+  }
+
   .printable-area {
     width: 100% !important;
     max-width: none !important;
@@ -43,4 +53,20 @@ body {
     width: 100% !important;
     height: auto !important;
   }
+}
+
+@page landscape {
+  size: letter landscape;
+}
+
+@page portrait {
+  size: letter portrait;
+}
+
+.print-landscape {
+  page: landscape;
+}
+
+.print-portrait {
+  page: portrait;
 }

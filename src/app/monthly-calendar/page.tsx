@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import PrintControls, { Orientation, getDimensions } from "@/components/PrintControls";
 
 const faqs = [
   { question: "Can I print a calendar for any month and year?", answer: "Yes! Select any month and year from the dropdowns. The calendar automatically calculates the correct days and layout." },
@@ -14,6 +15,8 @@ export default function MonthlyCalendar() {
   const [year, setYear] = useState(now.getFullYear());
   const [startDay, setStartDay] = useState<"sunday" | "monday">("sunday");
   const [showNotes, setShowNotes] = useState(false);
+  const [orientation, setOrientation] = useState<Orientation>("portrait");
+  const { width, height } = getDimensions(orientation);
 
   const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
   const dayHeaders = startDay === "sunday"
@@ -47,7 +50,7 @@ export default function MonthlyCalendar() {
   };
 
   return (
-    <div className="max-w-6xl mx-auto px-4 py-8 sm:px-6 lg:px-8">
+    <div className={`max-w-6xl mx-auto px-4 py-8 sm:px-6 lg:px-8 ${orientation === "landscape" ? "print-landscape" : "print-portrait"}`}>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
 
@@ -81,13 +84,11 @@ export default function MonthlyCalendar() {
               Notes Area
             </label>
           </div>
-          <button onClick={() => window.print()} className="w-full bg-emerald-600 text-white font-medium py-2 px-4 rounded hover:bg-emerald-700 transition-colors">
-            🖨️ Print
-          </button>
+          <PrintControls orientation={orientation} onOrientationChange={setOrientation} filename="monthly-calendar" />
         </div>
 
         <div className="flex-1 overflow-auto">
-          <div className="printable-area bg-white border border-gray-200 shadow-sm" style={{ width: "816px", minHeight: "1056px", padding: "32px" }}>
+          <div className="printable-area bg-white border border-gray-200 shadow-sm" style={{ width: `${width}px`, minHeight: `${height}px`, padding: "32px" }}>
             <h2 className="text-2xl font-bold text-center mb-4">
               {monthNames[month]} {year}
             </h2>

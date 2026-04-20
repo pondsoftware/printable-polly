@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import PrintControls, { Orientation, getDimensions } from "@/components/PrintControls";
 
 const faqs = [
   { question: "How many items should a checklist have?", answer: "It depends on the task. For daily checklists, 10-15 items is manageable. For project checklists, break larger lists into categories with sub-items." },
@@ -12,6 +13,8 @@ export default function Checklist() {
   const [numItems, setNumItems] = useState(20);
   const [columns, setColumns] = useState(1);
   const [title, setTitle] = useState("Checklist");
+  const [orientation, setOrientation] = useState<Orientation>("portrait");
+  const { width, height } = getDimensions(orientation);
 
   const itemsPerColumn = Math.ceil(numItems / columns);
 
@@ -31,7 +34,7 @@ export default function Checklist() {
   };
 
   return (
-    <div className="max-w-6xl mx-auto px-4 py-8 sm:px-6 lg:px-8">
+    <div className={`max-w-6xl mx-auto px-4 py-8 sm:px-6 lg:px-8 ${orientation === "landscape" ? "print-landscape" : "print-portrait"}`}>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
 
@@ -56,13 +59,11 @@ export default function Checklist() {
               <option value="3">3 columns</option>
             </select>
           </div>
-          <button onClick={() => window.print()} className="w-full bg-emerald-600 text-white font-medium py-2 px-4 rounded hover:bg-emerald-700 transition-colors">
-            🖨️ Print
-          </button>
+          <PrintControls orientation={orientation} onOrientationChange={setOrientation} filename="checklist" />
         </div>
 
         <div className="flex-1 overflow-auto">
-          <div className="printable-area bg-white border border-gray-200 shadow-sm" style={{ width: "816px", minHeight: "1056px", padding: "32px" }}>
+          <div className="printable-area bg-white border border-gray-200 shadow-sm" style={{ width: `${width}px`, minHeight: `${height}px`, padding: "32px" }}>
             <h2 className="text-xl font-bold text-center mb-4">{title}</h2>
 
             <div className={`grid gap-6`} style={{ gridTemplateColumns: `repeat(${columns}, 1fr)` }}>

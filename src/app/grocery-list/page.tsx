@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import PrintControls, { Orientation, getDimensions } from "@/components/PrintControls";
 
 const faqs = [
   { question: "Why organize a grocery list by store section?", answer: "Organizing by section (produce, dairy, meat, etc.) saves time by reducing backtracking. You can walk through the store once and get everything without missing items." },
@@ -22,6 +23,8 @@ const defaultSections = [
 export default function GroceryList() {
   const [sections, setSections] = useState(defaultSections);
   const [itemsPerSection, setItemsPerSection] = useState(6);
+  const [orientation, setOrientation] = useState<Orientation>("portrait");
+  const { width, height } = getDimensions(orientation);
 
   const updateSection = (index: number, value: string) => {
     const newSections = [...sections];
@@ -45,7 +48,7 @@ export default function GroceryList() {
   };
 
   return (
-    <div className="max-w-6xl mx-auto px-4 py-8 sm:px-6 lg:px-8">
+    <div className={`max-w-6xl mx-auto px-4 py-8 sm:px-6 lg:px-8 ${orientation === "landscape" ? "print-landscape" : "print-portrait"}`}>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
 
@@ -78,13 +81,11 @@ export default function GroceryList() {
               ))}
             </div>
           </div>
-          <button onClick={() => window.print()} className="w-full bg-emerald-600 text-white font-medium py-2 px-4 rounded hover:bg-emerald-700 transition-colors">
-            🖨️ Print
-          </button>
+          <PrintControls orientation={orientation} onOrientationChange={setOrientation} filename="grocery-list" />
         </div>
 
         <div className="flex-1 overflow-auto">
-          <div className="printable-area bg-white border border-gray-200 shadow-sm" style={{ width: "816px", minHeight: "1056px", padding: "32px" }}>
+          <div className="printable-area bg-white border border-gray-200 shadow-sm" style={{ width: `${width}px`, minHeight: `${height}px`, padding: "32px" }}>
             <h2 className="text-xl font-bold text-center mb-1">Grocery List</h2>
             <p className="text-center text-sm text-gray-500 mb-4">Date: ___________ Store: ___________</p>
 

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import PrintControls, { Orientation, getDimensions } from "@/components/PrintControls";
 
 const faqs = [
   { question: "Should I use a 1-12 or 1-20 multiplication table?", answer: "1-12 is standard for elementary school. 1-20 is useful for advanced students or when working with larger numbers in everyday math." },
@@ -11,6 +12,8 @@ const faqs = [
 export default function MultiplicationTable() {
   const [range, setRange] = useState(12);
   const [filled, setFilled] = useState(true);
+  const [orientation, setOrientation] = useState<Orientation>("portrait");
+  const { width, height } = getDimensions(orientation);
 
   const faqSchema = {
     "@context": "https://schema.org",
@@ -28,7 +31,7 @@ export default function MultiplicationTable() {
   };
 
   return (
-    <div className="max-w-6xl mx-auto px-4 py-8 sm:px-6 lg:px-8">
+    <div className={`max-w-6xl mx-auto px-4 py-8 sm:px-6 lg:px-8 ${orientation === "landscape" ? "print-landscape" : "print-portrait"}`}>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
 
@@ -53,13 +56,11 @@ export default function MultiplicationTable() {
               <option value="blank">Blank (Practice)</option>
             </select>
           </div>
-          <button onClick={() => window.print()} className="w-full bg-emerald-600 text-white font-medium py-2 px-4 rounded hover:bg-emerald-700 transition-colors">
-            🖨️ Print
-          </button>
+          <PrintControls orientation={orientation} onOrientationChange={setOrientation} filename="multiplication-table" />
         </div>
 
         <div className="flex-1 overflow-auto">
-          <div className="printable-area bg-white border border-gray-200 shadow-sm" style={{ width: "816px", minHeight: "1056px", padding: "32px" }}>
+          <div className="printable-area bg-white border border-gray-200 shadow-sm" style={{ width: `${width}px`, minHeight: `${height}px`, padding: "32px" }}>
             <h2 className="text-xl font-bold text-center mb-4">
               Multiplication Table (1-{range}) {!filled && "— Practice"}
             </h2>

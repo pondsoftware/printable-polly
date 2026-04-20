@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import PrintControls, { Orientation, getDimensions } from "@/components/PrintControls";
 
 const faqs = [
   { question: "How many habits should I track at once?", answer: "Start with 3-5 habits. Tracking too many at once can be overwhelming. Once your initial habits become automatic, add more gradually." },
@@ -12,6 +13,8 @@ export default function HabitTracker() {
   const [numHabits, setNumHabits] = useState(5);
   const [daysInMonth, setDaysInMonth] = useState(31);
   const [habits, setHabits] = useState<string[]>(["", "", "", "", "", "", "", "", "", ""]);
+  const [orientation, setOrientation] = useState<Orientation>("portrait");
+  const { width, height } = getDimensions(orientation);
 
   const updateHabit = (index: number, value: string) => {
     const newHabits = [...habits];
@@ -35,7 +38,7 @@ export default function HabitTracker() {
   };
 
   return (
-    <div className="max-w-6xl mx-auto px-4 py-8 sm:px-6 lg:px-8">
+    <div className={`max-w-6xl mx-auto px-4 py-8 sm:px-6 lg:px-8 ${orientation === "landscape" ? "print-landscape" : "print-portrait"}`}>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
 
@@ -76,13 +79,11 @@ export default function HabitTracker() {
               ))}
             </div>
           </div>
-          <button onClick={() => window.print()} className="w-full bg-emerald-600 text-white font-medium py-2 px-4 rounded hover:bg-emerald-700 transition-colors">
-            🖨️ Print
-          </button>
+          <PrintControls orientation={orientation} onOrientationChange={setOrientation} filename="habit-tracker" />
         </div>
 
         <div className="flex-1 overflow-auto">
-          <div className="printable-area bg-white border border-gray-200 shadow-sm" style={{ width: "816px", minHeight: "1056px", padding: "32px" }}>
+          <div className="printable-area bg-white border border-gray-200 shadow-sm" style={{ width: `${width}px`, minHeight: `${height}px`, padding: "32px" }}>
             <h2 className="text-xl font-bold text-center mb-1">Habit Tracker</h2>
             <p className="text-center text-sm text-gray-500 mb-4">Month: _______________</p>
 

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
+import PrintControls, { Orientation, getDimensions } from "@/components/PrintControls";
 
 const faqs = [
   { question: "What line style is best for handwriting practice?", answer: "Dashed midlines help beginners learn letter proportions. Solid lines are better for intermediate writers who already know letter sizing." },
@@ -12,7 +13,9 @@ export default function HandwritingPractice() {
   const [lineHeight, setLineHeight] = useState(48);
   const [lineStyle, setLineStyle] = useState<"solid" | "dashed">("dashed");
   const [showGuideLines, setShowGuideLines] = useState(true);
+  const [orientation, setOrientation] = useState<Orientation>("portrait");
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const { width, height } = getDimensions(orientation);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -21,8 +24,6 @@ export default function HandwritingPractice() {
     if (!ctx) return;
 
     const dpr = 2;
-    const width = 816;
-    const height = 1056;
     canvas.width = width * dpr;
     canvas.height = height * dpr;
     canvas.style.width = `${width}px`;
@@ -96,7 +97,7 @@ export default function HandwritingPractice() {
     ctx.moveTo(marginLeft, 0);
     ctx.lineTo(marginLeft, height);
     ctx.stroke();
-  }, [lineHeight, lineStyle, showGuideLines]);
+  }, [lineHeight, lineStyle, showGuideLines, orientation, width, height]);
 
   const faqSchema = {
     "@context": "https://schema.org",
@@ -114,7 +115,7 @@ export default function HandwritingPractice() {
   };
 
   return (
-    <div className="max-w-6xl mx-auto px-4 py-8 sm:px-6 lg:px-8">
+    <div className={`max-w-6xl mx-auto px-4 py-8 sm:px-6 lg:px-8 ${orientation === "landscape" ? "print-landscape" : "print-portrait"}`}>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
 
@@ -145,9 +146,7 @@ export default function HandwritingPractice() {
               Show Guide Lines
             </label>
           </div>
-          <button onClick={() => window.print()} className="w-full bg-emerald-600 text-white font-medium py-2 px-4 rounded hover:bg-emerald-700 transition-colors">
-            🖨️ Print
-          </button>
+          <PrintControls orientation={orientation} onOrientationChange={setOrientation} filename="handwriting-practice" />
         </div>
 
         <div className="flex-1 overflow-auto">

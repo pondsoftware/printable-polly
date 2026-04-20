@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
+import PrintControls, { Orientation, getDimensions } from "@/components/PrintControls";
 
 const faqs = [
   { question: "What grid size should I use for graph paper?", answer: "1/4 inch (0.25\") is the most common for math and science. 1/2 inch works well for younger students, and 1cm is standard for metric measurements." },
@@ -12,7 +13,9 @@ export default function GraphPaper() {
   const [gridSize, setGridSize] = useState<string>("0.25in");
   const [lineColor, setLineColor] = useState("#a0d0ff");
   const [lineWeight, setLineWeight] = useState(0.5);
+  const [orientation, setOrientation] = useState<Orientation>("portrait");
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const { width, height } = getDimensions(orientation);
 
   const gridSizePixels: Record<string, number> = {
     "0.25in": 24,
@@ -27,8 +30,6 @@ export default function GraphPaper() {
     if (!ctx) return;
 
     const dpr = 2;
-    const width = 816;
-    const height = 1056;
     canvas.width = width * dpr;
     canvas.height = height * dpr;
     canvas.style.width = `${width}px`;
@@ -55,7 +56,7 @@ export default function GraphPaper() {
       ctx.lineTo(width, y);
       ctx.stroke();
     }
-  }, [gridSize, lineColor, lineWeight]);
+  }, [gridSize, lineColor, lineWeight, orientation, width, height]);
 
   const faqSchema = {
     "@context": "https://schema.org",
@@ -73,7 +74,7 @@ export default function GraphPaper() {
   };
 
   return (
-    <div className="max-w-6xl mx-auto px-4 py-8 sm:px-6 lg:px-8">
+    <div className={`max-w-6xl mx-auto px-4 py-8 sm:px-6 lg:px-8 ${orientation === "landscape" ? "print-landscape" : "print-portrait"}`}>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
 
@@ -98,9 +99,7 @@ export default function GraphPaper() {
             <label className="block text-sm font-medium text-gray-700 mb-1">Line Weight ({lineWeight}px)</label>
             <input type="range" min="0.25" max="2" step="0.25" value={lineWeight} onChange={(e) => setLineWeight(parseFloat(e.target.value))} className="w-full" />
           </div>
-          <button onClick={() => window.print()} className="w-full bg-emerald-600 text-white font-medium py-2 px-4 rounded hover:bg-emerald-700 transition-colors">
-            🖨️ Print
-          </button>
+          <PrintControls orientation={orientation} onOrientationChange={setOrientation} filename="graph-paper" />
         </div>
 
         <div className="flex-1 overflow-auto">

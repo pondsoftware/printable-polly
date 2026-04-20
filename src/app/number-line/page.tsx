@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
+import PrintControls, { Orientation, getDimensions } from "@/components/PrintControls";
 
 const faqs = [
   { question: "What is a number line used for?", answer: "Number lines help visualize addition, subtraction, counting, fractions, and number relationships. They are a fundamental math tool for students learning arithmetic." },
@@ -13,7 +14,9 @@ export default function NumberLine() {
   const [end, setEnd] = useState(20);
   const [interval, setInterval] = useState(1);
   const [showLabels, setShowLabels] = useState(true);
+  const [orientation, setOrientation] = useState<Orientation>("portrait");
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const { width, height } = getDimensions(orientation);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -22,8 +25,6 @@ export default function NumberLine() {
     if (!ctx) return;
 
     const dpr = 2;
-    const width = 816;
-    const height = 1056;
     canvas.width = width * dpr;
     canvas.height = height * dpr;
     canvas.style.width = `${width}px`;
@@ -90,7 +91,7 @@ export default function NumberLine() {
         }
       }
     }
-  }, [start, end, interval, showLabels]);
+  }, [start, end, interval, showLabels, orientation, width, height]);
 
   const faqSchema = {
     "@context": "https://schema.org",
@@ -108,7 +109,7 @@ export default function NumberLine() {
   };
 
   return (
-    <div className="max-w-6xl mx-auto px-4 py-8 sm:px-6 lg:px-8">
+    <div className={`max-w-6xl mx-auto px-4 py-8 sm:px-6 lg:px-8 ${orientation === "landscape" ? "print-landscape" : "print-portrait"}`}>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
 
@@ -140,9 +141,7 @@ export default function NumberLine() {
               Show Labels
             </label>
           </div>
-          <button onClick={() => window.print()} className="w-full bg-emerald-600 text-white font-medium py-2 px-4 rounded hover:bg-emerald-700 transition-colors">
-            🖨️ Print
-          </button>
+          <PrintControls orientation={orientation} onOrientationChange={setOrientation} filename="number-line" />
         </div>
 
         <div className="flex-1 overflow-auto">

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
+import PrintControls, { Orientation, getDimensions } from "@/components/PrintControls";
 
 const faqs = [
   { question: "What is isometric paper used for?", answer: "Isometric paper uses a triangular grid to help draw 3D objects, architectural designs, and engineering diagrams without needing perspective calculations." },
@@ -11,7 +12,9 @@ const faqs = [
 export default function IsometricPaper() {
   const [gridSize, setGridSize] = useState(30);
   const [lineColor, setLineColor] = useState("#c0c0c0");
+  const [orientation, setOrientation] = useState<Orientation>("portrait");
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const { width, height } = getDimensions(orientation);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -20,8 +23,6 @@ export default function IsometricPaper() {
     if (!ctx) return;
 
     const dpr = 2;
-    const width = 816;
-    const height = 1056;
     canvas.width = width * dpr;
     canvas.height = height * dpr;
     canvas.style.width = `${width}px`;
@@ -59,7 +60,7 @@ export default function IsometricPaper() {
       ctx.lineTo(width, startY - width * Math.tan(Math.PI / 6));
       ctx.stroke();
     }
-  }, [gridSize, lineColor]);
+  }, [gridSize, lineColor, orientation, width, height]);
 
   const faqSchema = {
     "@context": "https://schema.org",
@@ -77,7 +78,7 @@ export default function IsometricPaper() {
   };
 
   return (
-    <div className="max-w-6xl mx-auto px-4 py-8 sm:px-6 lg:px-8">
+    <div className={`max-w-6xl mx-auto px-4 py-8 sm:px-6 lg:px-8 ${orientation === "landscape" ? "print-landscape" : "print-portrait"}`}>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
 
@@ -94,9 +95,7 @@ export default function IsometricPaper() {
             <label className="block text-sm font-medium text-gray-700 mb-1">Line Color</label>
             <input type="color" value={lineColor} onChange={(e) => setLineColor(e.target.value)} className="w-full h-10 border border-gray-300 rounded cursor-pointer" />
           </div>
-          <button onClick={() => window.print()} className="w-full bg-emerald-600 text-white font-medium py-2 px-4 rounded hover:bg-emerald-700 transition-colors">
-            🖨️ Print
-          </button>
+          <PrintControls orientation={orientation} onOrientationChange={setOrientation} filename="isometric-paper" />
         </div>
 
         <div className="flex-1 overflow-auto">

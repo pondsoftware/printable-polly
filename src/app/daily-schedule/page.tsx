@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import PrintControls, { Orientation, getDimensions } from "@/components/PrintControls";
 
 const faqs = [
   { question: "What time interval is best for daily scheduling?", answer: "30-minute intervals work for most people. Use 15 minutes for tightly packed days with many short meetings, or 60 minutes for a broader overview." },
@@ -12,6 +13,8 @@ export default function DailySchedule() {
   const [startHour, setStartHour] = useState(6);
   const [endHour, setEndHour] = useState(22);
   const [interval, setInterval] = useState(30);
+  const [orientation, setOrientation] = useState<Orientation>("portrait");
+  const { width, height } = getDimensions(orientation);
 
   const generateTimeSlots = () => {
     const slots: string[] = [];
@@ -44,7 +47,7 @@ export default function DailySchedule() {
   };
 
   return (
-    <div className="max-w-6xl mx-auto px-4 py-8 sm:px-6 lg:px-8">
+    <div className={`max-w-6xl mx-auto px-4 py-8 sm:px-6 lg:px-8 ${orientation === "landscape" ? "print-landscape" : "print-portrait"}`}>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
 
@@ -77,13 +80,11 @@ export default function DailySchedule() {
               <option value="60">60 minutes</option>
             </select>
           </div>
-          <button onClick={() => window.print()} className="w-full bg-emerald-600 text-white font-medium py-2 px-4 rounded hover:bg-emerald-700 transition-colors">
-            🖨️ Print
-          </button>
+          <PrintControls orientation={orientation} onOrientationChange={setOrientation} filename="daily-schedule" />
         </div>
 
         <div className="flex-1 overflow-auto">
-          <div className="printable-area bg-white border border-gray-200 shadow-sm" style={{ width: "816px", minHeight: "1056px", padding: "32px" }}>
+          <div className="printable-area bg-white border border-gray-200 shadow-sm" style={{ width: `${width}px`, minHeight: `${height}px`, padding: "32px" }}>
             <h2 className="text-xl font-bold text-center mb-1">Daily Schedule</h2>
             <p className="text-center text-sm text-gray-500 mb-4">Date: _______________</p>
 
