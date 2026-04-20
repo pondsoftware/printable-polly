@@ -11,6 +11,10 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://printablepolly.com"),
+  alternates: {
+    canonical: "/",
+  },
   icons: {
     icon: "/polly.png",
   },
