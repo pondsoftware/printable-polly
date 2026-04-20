@@ -31,6 +31,16 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://printablepolly.com/staff-paper</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://printablepolly.com/hex-paper</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://printablepolly.com/weekly-planner</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -56,6 +66,11 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://printablepolly.com/meal-planner</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://printablepolly.com/checklist</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -71,6 +86,46 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://printablepolly.com/budget-tracker</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://printablepolly.com/chore-chart</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://printablepolly.com/cleaning-schedule</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://printablepolly.com/word-search</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://printablepolly.com/bingo-cards</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://printablepolly.com/comic-strip</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://printablepolly.com/storyboard</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://printablepolly.com/coloring-pages</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://printablepolly.com/handwriting-practice</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -82,6 +137,21 @@
   </url>
   <url>
     <loc>https://printablepolly.com/number-line</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://printablepolly.com/reading-log</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://printablepolly.com/math-worksheets</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://printablepolly.com/sight-words</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
