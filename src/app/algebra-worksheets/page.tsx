@@ -120,12 +120,20 @@ function getDifficultyLabel(difficulty: Difficulty): string {
   }
 }
 
+function getDifficultyDescription(difficulty: Difficulty): string {
+  switch (difficulty) {
+    case "single": return "One-Step Equations";
+    case "double": return "Two-Step Equations";
+    case "triple": return "Multi-Step Equations with Distribution";
+  }
+}
+
 export default function AlgebraWorksheets() {
   const [difficulty, setDifficulty] = useState<Difficulty>("single");
-  const [numProblems, setNumProblems] = useState(20);
+  const [numProblems, setNumProblems] = useState(10);
   const [showAnswers, setShowAnswers] = useState(false);
   const [problems, setProblems] = useState<Problem[]>(() =>
-    Array.from({ length: 20 }, () => generateAlgebraProblem("single"))
+    Array.from({ length: 10 }, () => generateAlgebraProblem("single"))
   );
   const [orientation, setOrientation] = useState<Orientation>("portrait");
   const { width, height } = getDimensions(orientation);
@@ -145,6 +153,7 @@ export default function AlgebraWorksheets() {
   };
 
   const diffLabel = getDifficultyLabel(difficulty);
+  const diffDescription = getDifficultyDescription(difficulty);
 
   const faqSchema = {
     "@context": "https://schema.org",
@@ -174,6 +183,7 @@ export default function AlgebraWorksheets() {
       <p className="text-gray-600 mb-6">Generate free printable algebra worksheets. Practice solving for x with one-step, two-step, and multi-step equations — includes answer keys.</p>
 
       <div className="flex flex-col lg:flex-row gap-6">
+        {/* Controls panel */}
         <div className="controls-panel lg:w-64 shrink-0 space-y-4 bg-white p-4 rounded-lg border border-gray-200">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">Difficulty</label>
@@ -194,10 +204,10 @@ export default function AlgebraWorksheets() {
               onChange={(e) => handleNumProblemsChange(parseInt(e.target.value))}
               className="w-full border border-gray-300 rounded px-3 py-2 text-sm"
             >
+              <option value="6">6 problems</option>
+              <option value="8">8 problems</option>
               <option value="10">10 problems</option>
-              <option value="20">20 problems</option>
-              <option value="30">30 problems</option>
-              <option value="40">40 problems</option>
+              <option value="12">12 problems</option>
             </select>
           </div>
           <div>
@@ -220,38 +230,73 @@ export default function AlgebraWorksheets() {
           <PrintControls orientation={orientation} onOrientationChange={setOrientation} filename="algebra-worksheet" />
         </div>
 
+        {/* Printable area */}
         <div className="flex-1 overflow-auto">
-          <div className="printable-area bg-white border border-gray-200 shadow-sm" style={{ width: `${width}px`, minHeight: `${height}px`, padding: "32px" }}>
-            <h2 className="text-xl font-bold text-center mb-1">Algebra Worksheet</h2>
-            <p className="text-center text-sm text-gray-500 mb-1">Solve for x &bull; {diffLabel}</p>
-            <p className="text-center text-sm text-gray-400 mb-4">Name: ___________________________ Date: _______________</p>
+          <div
+            className="printable-area bg-white border border-gray-200 shadow-sm"
+            style={{ width: `${width}px`, minHeight: `${height}px`, padding: "40px 48px" }}
+          >
+            {/* Worksheet header */}
+            <div className="text-center mb-6 border-b border-gray-300 pb-4">
+              <h2 className="text-2xl font-bold text-gray-900 mb-1">Algebra Worksheet</h2>
+              <p className="text-sm text-gray-600 mb-3">
+                {diffLabel} &bull; {diffDescription} &bull; Solve for <em>x</em>
+              </p>
+              <div className="flex justify-between text-sm text-gray-700 mt-2 px-2">
+                <span>Name: <span style={{ display: "inline-block", width: "200px", borderBottom: "1px solid #333", verticalAlign: "bottom" }} /></span>
+                <span>Date: <span style={{ display: "inline-block", width: "120px", borderBottom: "1px solid #333", verticalAlign: "bottom" }} /></span>
+              </div>
+            </div>
 
-            <div className="space-y-3">
+            {/* Problems */}
+            <div className="space-y-4">
               {problems.map((p, i) => (
-                <div key={i} className="flex items-center gap-2" style={{ fontSize: "15px" }}>
-                  <span className="text-gray-400 text-xs w-6 text-right shrink-0">{i + 1}.</span>
-                  <span className="font-mono whitespace-nowrap">{p.display}</span>
-                  <span className="flex-1 border-b border-gray-300 min-w-[60px]" style={{ height: "20px" }} />
+                <div key={i} className="pb-2">
+                  {/* Problem row */}
+                  <div className="flex items-baseline gap-3">
+                    <span className="font-bold text-gray-800 shrink-0" style={{ fontSize: "15px", minWidth: "28px" }}>
+                      {i + 1}.
+                    </span>
+                    <span className="font-mono" style={{ fontSize: "18px", letterSpacing: "0.02em" }}>
+                      {p.display}
+                    </span>
+                  </div>
+                  {/* Work lines */}
+                  <div className="mt-2 ml-9">
+                    {[0, 1, 2].map(j => (
+                      <div key={j} className="border-b border-dashed border-gray-300 h-6" />
+                    ))}
+                  </div>
                 </div>
               ))}
             </div>
-
           </div>
 
+          {/* Answer key — separate page */}
           {showAnswers && (
-            <div className="printable-area bg-white border border-gray-200 shadow-sm mt-6" style={{ width: `${width}px`, minHeight: "200px", padding: "32px", breakBefore: "page" }}>
-              <h2 className="text-xl font-bold text-center mb-1">Answer Key</h2>
-              <p className="text-center text-sm text-gray-500 mb-4">Algebra &bull; {diffLabel}</p>
-              <div style={{
-                display: "grid",
-                gridTemplateColumns: `repeat(${Math.min(3, problems.length)}, 1fr)`,
-                gap: "8px 16px",
-                fontSize: "14px",
-              }}>
+            <div
+              className="printable-area bg-white border border-gray-200 shadow-sm mt-6"
+              style={{ width: `${width}px`, minHeight: "200px", padding: "40px 48px", breakBefore: "page" }}
+            >
+              <div className="text-center mb-6 border-b border-gray-300 pb-4">
+                <h2 className="text-2xl font-bold text-gray-900 mb-1">Answer Key</h2>
+                <p className="text-sm text-gray-600">
+                  Algebra Worksheet &bull; {diffLabel} &bull; {diffDescription}
+                </p>
+              </div>
+              <div
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "repeat(3, 1fr)",
+                  gap: "10px 24px",
+                  fontSize: "15px",
+                }}
+              >
                 {problems.map((p, i) => (
-                  <span key={i} className="text-gray-600 font-mono">
-                    {i + 1}. {p.answer}
-                  </span>
+                  <div key={i} className="flex items-center gap-2">
+                    <span className="font-bold text-gray-700">{i + 1}.</span>
+                    <span className="font-mono text-gray-800">{p.answer}</span>
+                  </div>
                 ))}
               </div>
             </div>
@@ -259,6 +304,7 @@ export default function AlgebraWorksheets() {
         </div>
       </div>
 
+      {/* FAQ section */}
       <section className="mt-10">
         <h2 className="text-2xl font-bold text-gray-800 mb-4">FAQ</h2>
         <div className="space-y-4">
