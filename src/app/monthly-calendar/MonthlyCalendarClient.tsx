@@ -1,5 +1,7 @@
 "use client";
 
+import Link from "next/link";
+
 import { useState } from "react";
 import PrintControls, { Orientation, getDimensions } from "@/components/PrintControls";
 
@@ -123,6 +125,29 @@ export default function MonthlyCalendarClient() {
           </div>
         </div>
       </div>
+
+      {/* Related Templates */}
+      <section className="mt-10">
+        <h2 className="text-2xl font-bold text-gray-800 mb-4">Related Templates</h2>
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+            <Link key="/weekly-planner" href="/weekly-planner" className="block p-3 bg-white rounded-lg border border-gray-200 hover:border-emerald-400 hover:shadow-md transition-all">
+              <span className="text-2xl">📅</span>
+              <h3 className="font-medium text-gray-900 text-sm mt-1">Weekly Planner</h3>
+            </Link>
+            <Link key="/daily-schedule" href="/daily-schedule" className="block p-3 bg-white rounded-lg border border-gray-200 hover:border-emerald-400 hover:shadow-md transition-all">
+              <span className="text-2xl">⏰</span>
+              <h3 className="font-medium text-gray-900 text-sm mt-1">Daily Schedule</h3>
+            </Link>
+            <Link key="/habit-tracker" href="/habit-tracker" className="block p-3 bg-white rounded-lg border border-gray-200 hover:border-emerald-400 hover:shadow-md transition-all">
+              <span className="text-2xl">✅</span>
+              <h3 className="font-medium text-gray-900 text-sm mt-1">Habit Tracker</h3>
+            </Link>
+            <Link key="/goal-setting" href="/goal-setting" className="block p-3 bg-white rounded-lg border border-gray-200 hover:border-emerald-400 hover:shadow-md transition-all">
+              <span className="text-2xl">🎯</span>
+              <h3 className="font-medium text-gray-900 text-sm mt-1">Goal Setting</h3>
+            </Link>
+        </div>
+      </section>
 
       <section className="mt-10">
         <h2 className="text-2xl font-bold text-gray-800 mb-4">FAQ</h2>

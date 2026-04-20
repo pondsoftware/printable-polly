@@ -1,5 +1,7 @@
 "use client";
 
+import Link from "next/link";
+
 import { useState, useCallback } from "react";
 import PrintControls, { Orientation, getDimensions } from "@/components/PrintControls";
 
@@ -303,6 +305,29 @@ export default function AlgebraWorksheetsClient() {
           )}
         </div>
       </div>
+
+      {/* Related Templates */}
+      <section className="mt-10">
+        <h2 className="text-2xl font-bold text-gray-800 mb-4">Related Templates</h2>
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+            <Link key="/math-worksheets" href="/math-worksheets" className="block p-3 bg-white rounded-lg border border-gray-200 hover:border-emerald-400 hover:shadow-md transition-all">
+              <span className="text-2xl">➕</span>
+              <h3 className="font-medium text-gray-900 text-sm mt-1">Math Worksheets</h3>
+            </Link>
+            <Link key="/fractions-worksheets" href="/fractions-worksheets" className="block p-3 bg-white rounded-lg border border-gray-200 hover:border-emerald-400 hover:shadow-md transition-all">
+              <span className="text-2xl">½</span>
+              <h3 className="font-medium text-gray-900 text-sm mt-1">Fractions Worksheets</h3>
+            </Link>
+            <Link key="/geometry-worksheets" href="/geometry-worksheets" className="block p-3 bg-white rounded-lg border border-gray-200 hover:border-emerald-400 hover:shadow-md transition-all">
+              <span className="text-2xl">△</span>
+              <h3 className="font-medium text-gray-900 text-sm mt-1">Geometry Worksheets</h3>
+            </Link>
+            <Link key="/graph-paper" href="/graph-paper" className="block p-3 bg-white rounded-lg border border-gray-200 hover:border-emerald-400 hover:shadow-md transition-all">
+              <span className="text-2xl">📐</span>
+              <h3 className="font-medium text-gray-900 text-sm mt-1">Graph Paper</h3>
+            </Link>
+        </div>
+      </section>
 
       {/* FAQ section */}
       <section className="mt-10">

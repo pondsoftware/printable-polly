@@ -1,5 +1,7 @@
 "use client";
 
+import Link from "next/link";
+
 import { useState, useRef, useEffect } from "react";
 import PrintControls, { Orientation, getDimensions } from "@/components/PrintControls";
 
@@ -199,6 +201,29 @@ export default function StaffPaperClient() {
           </div>
         </div>
       </div>
+
+      {/* Related Templates */}
+      <section className="mt-10">
+        <h2 className="text-2xl font-bold text-gray-800 mb-4">Related Templates</h2>
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+            <Link key="/lined-paper" href="/lined-paper" className="block p-3 bg-white rounded-lg border border-gray-200 hover:border-emerald-400 hover:shadow-md transition-all">
+              <span className="text-2xl">📝</span>
+              <h3 className="font-medium text-gray-900 text-sm mt-1">Lined Paper</h3>
+            </Link>
+            <Link key="/graph-paper" href="/graph-paper" className="block p-3 bg-white rounded-lg border border-gray-200 hover:border-emerald-400 hover:shadow-md transition-all">
+              <span className="text-2xl">📐</span>
+              <h3 className="font-medium text-gray-900 text-sm mt-1">Graph Paper</h3>
+            </Link>
+            <Link key="/dot-grid" href="/dot-grid" className="block p-3 bg-white rounded-lg border border-gray-200 hover:border-emerald-400 hover:shadow-md transition-all">
+              <span className="text-2xl">⊡</span>
+              <h3 className="font-medium text-gray-900 text-sm mt-1">Dot Grid Paper</h3>
+            </Link>
+            <Link key="/handwriting-practice" href="/handwriting-practice" className="block p-3 bg-white rounded-lg border border-gray-200 hover:border-emerald-400 hover:shadow-md transition-all">
+              <span className="text-2xl">✏️</span>
+              <h3 className="font-medium text-gray-900 text-sm mt-1">Handwriting Practice</h3>
+            </Link>
+        </div>
+      </section>
 
       <section className="mt-10">
         <h2 className="text-2xl font-bold text-gray-800 mb-4">FAQ</h2>
