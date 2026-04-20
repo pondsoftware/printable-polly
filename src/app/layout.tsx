@@ -11,6 +11,9 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
+  icons: {
+    icon: "/favicon.svg",
+  },
   title: "Printable Polly — Free Printable Templates",
   description:
     "Free printable template generator. Create graph paper, lined paper, planners, calendars, checklists, and more. Customize and print instantly — no signup required.",
