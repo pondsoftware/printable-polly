@@ -53,7 +53,7 @@ export default function RootLayout({
         `}
       </Script>
       <body className="min-h-full flex flex-col font-sans bg-gray-50 text-gray-900">
-        <header className="bg-white border-b border-gray-200 no-print">
+        <header className="bg-emerald-600 shadow-sm no-print">
           <div className="max-w-6xl mx-auto px-4 py-3 sm:px-6 lg:px-8 flex items-center gap-2">
             <Link href="/" className="flex items-center gap-2">
               <Image
@@ -63,8 +63,8 @@ export default function RootLayout({
                 height={32}
                 className="rounded"
               />
-              <span className="text-xl font-bold text-emerald-700">
-                Printable Polly
+              <span className="text-xl font-bold text-white">
+                🦜 Printable Polly
               </span>
             </Link>
           </div>
