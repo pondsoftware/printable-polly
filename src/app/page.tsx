@@ -10,6 +10,8 @@ const categories = [
       { href: "/dot-grid", icon: "⊡", title: "Dot Grid Paper", desc: "Dot grid for bullet journals and sketching" },
       { href: "/isometric-paper", icon: "🔺", title: "Isometric Paper", desc: "Triangle grid for 3D drawing and design" },
       { href: "/cornell-notes", icon: "🎓", title: "Cornell Notes", desc: "Cornell note-taking template with cue column" },
+      { href: "/staff-paper", icon: "🎵", title: "Staff Paper", desc: "Blank music manuscript paper with staves" },
+      { href: "/hex-paper", icon: "⬡", title: "Hex Paper", desc: "Hexagonal grid for chemistry, RPGs, and design" },
     ],
   },
   {
@@ -20,6 +22,7 @@ const categories = [
       { href: "/daily-schedule", icon: "⏰", title: "Daily Schedule", desc: "Time-blocked daily planner with intervals" },
       { href: "/habit-tracker", icon: "✅", title: "Habit Tracker", desc: "Track daily habits with a monthly grid" },
       { href: "/goal-setting", icon: "🎯", title: "Goal Setting", desc: "SMART goal worksheet for planning success" },
+      { href: "/meal-planner", icon: "🍽️", title: "Meal Planner", desc: "Plan weekly meals for the whole family" },
     ],
   },
   {
@@ -28,6 +31,8 @@ const categories = [
       { href: "/checklist", icon: "☑️", title: "Checklist", desc: "Blank checklist with customizable columns" },
       { href: "/todo-list", icon: "📋", title: "To-Do List", desc: "Priority-based to-do list template" },
       { href: "/grocery-list", icon: "🛒", title: "Grocery List", desc: "Shopping list organized by store section" },
+      { href: "/budget-tracker", icon: "💰", title: "Budget Tracker", desc: "Track monthly income and expenses" },
+      { href: "/chore-chart", icon: "⭐", title: "Chore Chart", desc: "Weekly chore chart with customizable tasks" },
     ],
   },
   {
@@ -36,6 +41,9 @@ const categories = [
       { href: "/handwriting-practice", icon: "✏️", title: "Handwriting Practice", desc: "Practice sheets with guide lines" },
       { href: "/multiplication-table", icon: "✖️", title: "Multiplication Table", desc: "Times tables — filled or blank for practice" },
       { href: "/number-line", icon: "📏", title: "Number Line", desc: "Customizable number lines for math" },
+      { href: "/reading-log", icon: "📚", title: "Reading Log", desc: "Track books read with ratings and notes" },
+      { href: "/math-worksheets", icon: "➕", title: "Math Worksheets", desc: "Random math problems — add, subtract, multiply, divide" },
+      { href: "/sight-words", icon: "👁️", title: "Sight Words", desc: "Practice high-frequency words by grade level" },
     ],
   },
 ];
