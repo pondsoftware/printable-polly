@@ -12,7 +12,7 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   icons: {
-    icon: "/favicon.svg",
+    icon: "/polly.png",
   },
   title: "Printable Polly — Free Printable Templates",
   description:
@@ -64,7 +64,7 @@ export default function RootLayout({
                 className="rounded"
               />
               <span className="text-xl font-bold text-white">
-                🦜 Printable Polly
+                Printable Polly
               </span>
             </Link>
           </div>
