@@ -62,7 +62,7 @@ export default function RootLayout({
             <Link href="/" className="flex items-center gap-2">
               <Image
                 src="/polly.png"
-                alt="Polly the Parrot"
+                alt="Printable Polly — free printable templates and worksheets"
                 width={32}
                 height={32}
                 className="rounded"
