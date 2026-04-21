@@ -49,6 +49,7 @@ const categories = [
       { href: "/comic-strip", icon: "💬", title: "Comic Strip", desc: "Blank comic panels for drawing stories" },
       { href: "/storyboard", icon: "🎬", title: "Storyboard", desc: "Scene planning with drawing and notes areas" },
       { href: "/coloring-pages", icon: "🎨", title: "Coloring Pages", desc: "Geometric mandalas and patterns to color" },
+      { href: "/lined-journal", icon: "📓", title: "Lined Journal", desc: "Journal pages with lines and drawing area" },
     ],
   },
   {
@@ -63,6 +64,11 @@ const categories = [
       { href: "/algebra-worksheets", icon: "𝑥", title: "Algebra Worksheets", desc: "Solve for x — one-step to multi-step equations" },
       { href: "/geometry-worksheets", icon: "△", title: "Geometry Worksheets", desc: "Perimeter, area, volume, and surface area" },
       { href: "/sight-words", icon: "👁️", title: "Sight Words", desc: "Practice high-frequency words by grade level" },
+      { href: "/spelling-worksheets", icon: "📝", title: "Spelling Worksheets", desc: "Write-3-times, fill-in-the-blank, and word scramble" },
+      { href: "/flash-cards", icon: "🃏", title: "Flash Cards", desc: "Printable flash cards for math, vocabulary, or custom" },
+      { href: "/telling-time", icon: "🕐", title: "Telling Time", desc: "Clock face worksheets for learning to tell time" },
+      { href: "/tracing-letters", icon: "🔤", title: "Tracing Letters", desc: "Dotted letter tracing for pre-K and kindergarten" },
+      { href: "/place-value", icon: "🔢", title: "Place Value", desc: "Identify digit values, expanded form, compare numbers" },
     ],
   },
 ];
