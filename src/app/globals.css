@@ -34,20 +34,17 @@ body {
     margin: 0 !important;
   }
 
-  /* Hide everything that isn't the printable document */
-  body * {
-    visibility: hidden;
+  /* Hide everything except the printable document */
+  h1, h2, p, section, nav, button, select, label, input {
+    display: none !important;
   }
 
   .printable-area,
   .printable-area * {
-    visibility: visible !important;
+    display: revert !important;
   }
 
   .printable-area {
-    position: absolute !important;
-    top: 0 !important;
-    left: 0 !important;
     width: 100% !important;
     max-width: none !important;
     margin: 0 !important;
@@ -59,6 +56,13 @@ body {
   .printable-area canvas {
     width: 100% !important;
     height: auto !important;
+  }
+
+  /* Collapse parent containers to eliminate blank space */
+  div {
+    padding: 0 !important;
+    margin: 0 !important;
+    gap: 0 !important;
   }
 }
 
