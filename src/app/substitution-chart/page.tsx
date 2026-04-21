@@ -8,6 +8,23 @@ export const metadata: Metadata = {
   alternates: { canonical: "https://printablepolly.com/substitution-chart" },
 };
 
+
+const webAppJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  name: "Ingredient Substitution Chart",
+  description: "Print an ingredient substitution chart for baking and cooking. Substitutes for butter, eggs, milk, cream, sugar, flour, and more with ratios and notes. Free PDF.",
+  url: "https://printablepolly.com/substitution-chart",
+  applicationCategory: "UtilityApplication",
+  operatingSystem: "Any",
+  offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+};
+
 export default function SubstitutionChartPage() {
-  return <SubstitutionChartClient />;
+  return (
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webAppJsonLd) }} />
+      <SubstitutionChartClient />
+    </>
+  );
 }

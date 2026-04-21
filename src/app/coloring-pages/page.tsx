@@ -8,6 +8,23 @@ export const metadata: Metadata = {
   alternates: { canonical: "https://printablepolly.com/coloring-pages" },
 };
 
+
+const webAppJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  name: "Geometric Coloring Pages",
+  description: "Generate beautiful geometric coloring pages including mandalas, mosaics, kaleidoscopes, and tessellations. Customize patterns and print for free.",
+  url: "https://printablepolly.com/coloring-pages",
+  applicationCategory: "UtilityApplication",
+  operatingSystem: "Any",
+  offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+};
+
 export default function ColoringPagesPage() {
-  return <ColoringPagesClient />;
+  return (
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webAppJsonLd) }} />
+      <ColoringPagesClient />
+    </>
+  );
 }

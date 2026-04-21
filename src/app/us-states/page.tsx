@@ -8,6 +8,23 @@ export const metadata: Metadata = {
   alternates: { canonical: "https://printablepolly.com/us-states" },
 };
 
+
+const webAppJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  name: "US States & Capitals List",
+  description: "Print a complete list of all 50 US states with capitals, abbreviations, and regions. Alphabetical or grouped by region. Free printable PDF.",
+  url: "https://printablepolly.com/us-states",
+  applicationCategory: "EducationalApplication",
+  operatingSystem: "Any",
+  offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+};
+
 export default function UsStatesPage() {
-  return <UsStatesClient />;
+  return (
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webAppJsonLd) }} />
+      <UsStatesClient />
+    </>
+  );
 }

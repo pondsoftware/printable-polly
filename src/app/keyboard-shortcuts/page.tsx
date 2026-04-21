@@ -8,6 +8,23 @@ export const metadata: Metadata = {
   alternates: { canonical: "https://printablepolly.com/keyboard-shortcuts" },
 };
 
+
+const webAppJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  name: "Keyboard Shortcuts Cheat Sheet",
+  description: "Print a keyboard shortcuts cheat sheet for Mac or Windows. Covers general, text editing, browser, file management, and screenshot shortcuts. Free printable PDF.",
+  url: "https://printablepolly.com/keyboard-shortcuts",
+  applicationCategory: "UtilityApplication",
+  operatingSystem: "Any",
+  offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+};
+
 export default function KeyboardShortcutsPage() {
-  return <KeyboardShortcutsClient />;
+  return (
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webAppJsonLd) }} />
+      <KeyboardShortcutsClient />
+    </>
+  );
 }

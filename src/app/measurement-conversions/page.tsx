@@ -8,6 +8,23 @@ export const metadata: Metadata = {
   alternates: { canonical: "https://printablepolly.com/measurement-conversions" },
 };
 
+
+const webAppJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  name: "Kitchen Measurement Conversions Chart",
+  description: "Print a kitchen measurement conversion cheat sheet with teaspoons to tablespoons, cups to quarts, ml to cups, grams to ounces, and common ingredient weights. Free PDF.",
+  url: "https://printablepolly.com/measurement-conversions",
+  applicationCategory: "UtilityApplication",
+  operatingSystem: "Any",
+  offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+};
+
 export default function MeasurementConversionsPage() {
-  return <MeasurementConversionsClient />;
+  return (
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webAppJsonLd) }} />
+      <MeasurementConversionsClient />
+    </>
+  );
 }

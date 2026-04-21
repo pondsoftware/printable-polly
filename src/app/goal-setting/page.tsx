@@ -8,6 +8,23 @@ export const metadata: Metadata = {
   alternates: { canonical: "https://printablepolly.com/goal-setting" },
 };
 
+
+const webAppJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  name: "SMART Goal Setting Worksheet",
+  description: "Create printable SMART goal-setting worksheets. Define specific, measurable, achievable, relevant, and time-bound goals. Download and print for free.",
+  url: "https://printablepolly.com/goal-setting",
+  applicationCategory: "UtilityApplication",
+  operatingSystem: "Any",
+  offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+};
+
 export default function GoalSettingPage() {
-  return <GoalSettingClient />;
+  return (
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webAppJsonLd) }} />
+      <GoalSettingClient />
+    </>
+  );
 }

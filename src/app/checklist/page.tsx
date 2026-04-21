@@ -8,6 +8,23 @@ export const metadata: Metadata = {
   alternates: { canonical: "https://printablepolly.com/checklist" },
 };
 
+
+const webAppJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  name: "Checklist",
+  description: "Create blank printable checklists with customizable items, columns, and titles. Perfect for to-dos, packing lists, and daily planning. Print instantly.",
+  url: "https://printablepolly.com/checklist",
+  applicationCategory: "UtilityApplication",
+  operatingSystem: "Any",
+  offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+};
+
 export default function ChecklistPage() {
-  return <ChecklistClient />;
+  return (
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webAppJsonLd) }} />
+      <ChecklistClient />
+    </>
+  );
 }

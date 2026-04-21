@@ -8,6 +8,23 @@ export const metadata: Metadata = {
   alternates: { canonical: "https://printablepolly.com/comic-strip" },
 };
 
+
+const webAppJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  name: "Comic Strip Templates",
+  description: "Print blank comic strip panels for drawing stories. Choose your panel layout and border style, then start creating comics. Free and customizable.",
+  url: "https://printablepolly.com/comic-strip",
+  applicationCategory: "UtilityApplication",
+  operatingSystem: "Any",
+  offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+};
+
 export default function ComicStripPage() {
-  return <ComicStripClient />;
+  return (
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webAppJsonLd) }} />
+      <ComicStripClient />
+    </>
+  );
 }

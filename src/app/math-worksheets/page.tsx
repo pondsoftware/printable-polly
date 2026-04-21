@@ -8,6 +8,23 @@ export const metadata: Metadata = {
   alternates: { canonical: "https://printablepolly.com/math-worksheets" },
 };
 
+
+const webAppJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  name: "Math Worksheets",
+  description: "Generate printable math worksheets with random problems. Choose arithmetic, fractions, algebra, or geometry at any difficulty level. Includes answer keys.",
+  url: "https://printablepolly.com/math-worksheets",
+  applicationCategory: "EducationalApplication",
+  operatingSystem: "Any",
+  offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+};
+
 export default function MathWorksheetsPage() {
-  return <MathWorksheetsClient />;
+  return (
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webAppJsonLd) }} />
+      <MathWorksheetsClient />
+    </>
+  );
 }

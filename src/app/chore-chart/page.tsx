@@ -8,6 +8,23 @@ export const metadata: Metadata = {
   alternates: { canonical: "https://printablepolly.com/chore-chart" },
 };
 
+
+const webAppJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  name: "Chore Chart for Kids",
+  description: "Create printable weekly chore charts for kids. Customize chore names and number of tasks, then print or download as PDF. Great for building responsibility.",
+  url: "https://printablepolly.com/chore-chart",
+  applicationCategory: "UtilityApplication",
+  operatingSystem: "Any",
+  offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+};
+
 export default function ChoreChartPage() {
-  return <ChoreChartClient />;
+  return (
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webAppJsonLd) }} />
+      <ChoreChartClient />
+    </>
+  );
 }

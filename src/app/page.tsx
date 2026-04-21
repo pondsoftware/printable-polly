@@ -133,6 +133,8 @@ const faqs = [
 ];
 
 export default function Home() {
+  const allTemplates = categories.flatMap((c) => c.templates);
+
   const faqSchema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -146,11 +148,33 @@ export default function Home() {
     })),
   };
 
+  const collectionSchema = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name: "Free Printable Templates — Printable Polly",
+    description: "Customize and print graph paper, planners, checklists, worksheets, cheat sheets, and more — all free, no signup required.",
+    url: "https://printablepolly.com",
+    mainEntity: {
+      "@type": "ItemList",
+      numberOfItems: allTemplates.length,
+      itemListElement: allTemplates.map((t, i) => ({
+        "@type": "ListItem",
+        position: i + 1,
+        name: t.title,
+        url: `https://printablepolly.com${t.href}`,
+      })),
+    },
+  };
+
   return (
     <div className="max-w-6xl mx-auto px-4 py-8 sm:px-6 lg:px-8">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionSchema) }}
       />
 
       {/* Hero */}

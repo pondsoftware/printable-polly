@@ -8,6 +8,23 @@ export const metadata: Metadata = {
   alternates: { canonical: "https://printablepolly.com/monthly-calendar" },
 };
 
+
+const webAppJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  name: "Monthly Calendar",
+  description: "Generate a printable monthly calendar for any month and year. Choose your start day, add a notes section, and print or download as PDF.",
+  url: "https://printablepolly.com/monthly-calendar",
+  applicationCategory: "UtilityApplication",
+  operatingSystem: "Any",
+  offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+};
+
 export default function MonthlyCalendarPage() {
-  return <MonthlyCalendarClient />;
+  return (
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webAppJsonLd) }} />
+      <MonthlyCalendarClient />
+    </>
+  );
 }

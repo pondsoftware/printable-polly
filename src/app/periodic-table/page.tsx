@@ -8,6 +8,23 @@ export const metadata: Metadata = {
   alternates: { canonical: "https://printablepolly.com/periodic-table" },
 };
 
+
+const webAppJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  name: "Periodic Table of Elements",
+  description: "Print a color-coded periodic table of elements with atomic number, symbol, name, and atomic mass. Full or simplified version. Free printable PDF.",
+  url: "https://printablepolly.com/periodic-table",
+  applicationCategory: "EducationalApplication",
+  operatingSystem: "Any",
+  offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+};
+
 export default function PeriodicTablePage() {
-  return <PeriodicTableClient />;
+  return (
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webAppJsonLd) }} />
+      <PeriodicTableClient />
+    </>
+  );
 }

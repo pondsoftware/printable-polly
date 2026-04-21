@@ -8,6 +8,23 @@ export const metadata: Metadata = {
   alternates: { canonical: "https://printablepolly.com/lined-paper" },
 };
 
+
+const webAppJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  name: "Lined Paper",
+  description: "Create custom ruled paper with college, wide, or narrow line spacing. Add or remove margins and choose your line color. Print free lined paper instantly.",
+  url: "https://printablepolly.com/lined-paper",
+  applicationCategory: "UtilityApplication",
+  operatingSystem: "Any",
+  offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+};
+
 export default function LinedPaperPage() {
-  return <LinedPaperClient />;
+  return (
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webAppJsonLd) }} />
+      <LinedPaperClient />
+    </>
+  );
 }

@@ -8,6 +8,23 @@ export const metadata: Metadata = {
   alternates: { canonical: "https://printablepolly.com/music-theory" },
 };
 
+
+const webAppJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  name: "Music Theory Cheat Sheet",
+  description: "Print a music theory reference covering note values, time signatures, key signatures, intervals, dynamics, and tempo markings. Free printable PDF.",
+  url: "https://printablepolly.com/music-theory",
+  applicationCategory: "UtilityApplication",
+  operatingSystem: "Any",
+  offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+};
+
 export default function MusicTheoryPage() {
-  return <MusicTheoryClient />;
+  return (
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webAppJsonLd) }} />
+      <MusicTheoryClient />
+    </>
+  );
 }
