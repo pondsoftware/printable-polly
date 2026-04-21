@@ -34,13 +34,20 @@ body {
     margin: 0 !important;
   }
 
-  .faq-section,
-  .intro-text,
-  h1 {
-    display: none !important;
+  /* Hide everything that isn't the printable document */
+  body * {
+    visibility: hidden;
+  }
+
+  .printable-area,
+  .printable-area * {
+    visibility: visible !important;
   }
 
   .printable-area {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
     width: 100% !important;
     max-width: none !important;
     margin: 0 !important;
