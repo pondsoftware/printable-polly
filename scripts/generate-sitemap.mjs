@@ -37,6 +37,32 @@ const urls = [
   "/algebra-worksheets",
   "/geometry-worksheets",
   "/sight-words",
+  "/spelling-worksheets",
+  "/flash-cards",
+  "/telling-time",
+  "/tracing-letters",
+  "/place-value",
+  "/lined-journal",
+  // Cheat Sheets — Education
+  "/periodic-table",
+  "/math-formulas",
+  "/grammar-rules",
+  "/us-states",
+  "/unit-conversions",
+  // Cheat Sheets — Cooking
+  "/measurement-conversions",
+  "/cooking-temperatures",
+  "/spice-guide",
+  "/substitution-chart",
+  // Cheat Sheets — Tech
+  "/keyboard-shortcuts",
+  "/git-cheat-sheet",
+  "/regex-cheat-sheet",
+  "/html-css-reference",
+  // Cheat Sheets — Music
+  "/guitar-chords",
+  "/piano-scales",
+  "/music-theory",
 ];
 
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>

@@ -71,6 +71,42 @@ const categories = [
       { href: "/place-value", icon: "🔢", title: "Place Value", desc: "Identify digit values, expanded form, compare numbers" },
     ],
   },
+  {
+    name: "Cheat Sheets — Education",
+    templates: [
+      { href: "/periodic-table", icon: "⚛", title: "Periodic Table", desc: "Complete periodic table of elements" },
+      { href: "/math-formulas", icon: "∑", title: "Math Formulas", desc: "Algebra, geometry, trig & statistics formulas" },
+      { href: "/grammar-rules", icon: "✏", title: "Grammar Rules", desc: "Parts of speech, punctuation & common mistakes" },
+      { href: "/us-states", icon: "🗺", title: "US States & Capitals", desc: "All 50 states, capitals & abbreviations" },
+      { href: "/unit-conversions", icon: "⇄", title: "Unit Conversions", desc: "Length, weight, volume & temperature conversions" },
+    ],
+  },
+  {
+    name: "Cheat Sheets — Cooking",
+    templates: [
+      { href: "/measurement-conversions", icon: "🥄", title: "Measurement Conversions", desc: "Kitchen measurements, cups, tbsp & metric" },
+      { href: "/cooking-temperatures", icon: "🌡", title: "Cooking Temperatures", desc: "Safe meat temps, oven conversions & baking temps" },
+      { href: "/spice-guide", icon: "🌿", title: "Spice & Herb Guide", desc: "Flavor profiles, pairings & spice blends" },
+      { href: "/substitution-chart", icon: "🔄", title: "Substitution Chart", desc: "Common ingredient substitutions for cooking & baking" },
+    ],
+  },
+  {
+    name: "Cheat Sheets — Tech",
+    templates: [
+      { href: "/keyboard-shortcuts", icon: "⌨", title: "Keyboard Shortcuts", desc: "Essential shortcuts for Mac & Windows" },
+      { href: "/git-cheat-sheet", icon: ">_", title: "Git Cheat Sheet", desc: "Common git commands & workflows" },
+      { href: "/regex-cheat-sheet", icon: ".*", title: "Regex Cheat Sheet", desc: "Regular expression patterns & syntax" },
+      { href: "/html-css-reference", icon: "</>", title: "HTML & CSS Reference", desc: "Tags, selectors, flexbox & grid" },
+    ],
+  },
+  {
+    name: "Cheat Sheets — Music",
+    templates: [
+      { href: "/guitar-chords", icon: "🎸", title: "Guitar Chord Chart", desc: "Essential open chords & barre chords" },
+      { href: "/piano-scales", icon: "🎹", title: "Piano Scales", desc: "Major, minor, pentatonic & blues scales" },
+      { href: "/music-theory", icon: "🎵", title: "Music Theory Basics", desc: "Notes, keys, intervals & dynamics" },
+    ],
+  },
 ];
 
 const faqs = [
