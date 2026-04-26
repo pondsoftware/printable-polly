@@ -20,11 +20,11 @@ export const metadata: Metadata = {
   },
   title: "Printable Polly — Free Printable Templates",
   description:
-    "Free printable template generator. Create graph paper, lined paper, planners, calendars, checklists, and more. Customize and print instantly — no signup required.",
+    "Free printable templates — graph paper, lined paper, planners, calendars, and checklists. Customize and download instantly, no signup required.",
   openGraph: {
     title: "Printable Polly — Free Printable Templates",
     description:
-      "Free printable template generator. Create graph paper, lined paper, planners, calendars, checklists, and more. Customize and print instantly.",
+      "Free printable templates — graph paper, lined paper, planners, calendars, and checklists. Customize and download instantly, no signup.",
     type: "website",
     url: "https://printablepolly.com",
     siteName: "Printable Polly",
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     card: "summary",
     title: "Printable Polly — Free Printable Templates",
     description:
-      "Free printable template generator. Create graph paper, planners, calendars, checklists, and more. Customize and print instantly.",
+      "Free printable templates — graph paper, lined paper, planners, calendars, and checklists. Customize and download instantly, no signup.",
   },
 };
 
