@@ -195,6 +195,34 @@ export default function Home() {
         </p>
       </section>
 
+      {/* Browse by Grade Level */}
+      <section className="mb-10">
+        <h2 className="text-2xl font-bold text-gray-800 mb-1 border-b border-emerald-200 pb-2">
+          Browse Worksheets by Grade Level
+        </h2>
+        <p className="text-sm text-gray-500 mb-4">Free printable worksheets organized by grade — math, reading, writing, and more.</p>
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
+          {[
+            { href: "/kindergarten-worksheets", grade: "Kindergarten", ages: "Ages 5–6", icon: "🌱" },
+            { href: "/first-grade-worksheets",  grade: "1st Grade",    ages: "Ages 6–7", icon: "⭐" },
+            { href: "/second-grade-worksheets", grade: "2nd Grade",    ages: "Ages 7–8", icon: "📖" },
+            { href: "/third-grade-worksheets",  grade: "3rd Grade",    ages: "Ages 8–9", icon: "✖️" },
+            { href: "/fourth-grade-worksheets", grade: "4th Grade",    ages: "Ages 9–10", icon: "📐" },
+            { href: "/fifth-grade-worksheets",  grade: "5th Grade",    ages: "Ages 10–11", icon: "🔣" },
+          ].map((g) => (
+            <Link
+              key={g.href}
+              href={g.href}
+              className="block text-center p-4 bg-white rounded-lg border border-gray-200 hover:border-emerald-400 hover:shadow-md transition-all group"
+            >
+              <div className="text-2xl mb-1">{g.icon}</div>
+              <div className="font-semibold text-gray-900 group-hover:text-emerald-700 text-sm leading-tight">{g.grade}</div>
+              <div className="text-xs text-gray-500 mt-0.5">{g.ages}</div>
+            </Link>
+          ))}
+        </div>
+      </section>
+
       {/* Template Categories */}
       {categories.map((category) => (
         <section key={category.name} className="mb-10">
