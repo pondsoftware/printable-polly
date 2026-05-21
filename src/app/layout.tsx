@@ -44,6 +44,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${inter.variable} h-full antialiased`}>
+      <head>
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3772006690343350"
+          crossOrigin="anonymous"
+        />
+      </head>
       <Script
         src="https://www.googletagmanager.com/gtag/js?id=G-DW4CLWDB9M"
         strategy="afterInteractive"
